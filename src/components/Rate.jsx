@@ -7,7 +7,7 @@ export default function Rate() {
       <div className="shell py-16 md:py-24">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-5">
-            <p className="eyebrow">02 &mdash; {rate.eyebrow}</p>
+            <p className="eyebrow">08 &mdash; {rate.eyebrow}</p>
             <h2 className="display mt-4 text-[clamp(1.9rem,3.2vw,2.9rem)] leading-[1.08]">
               {rate.title}
             </h2>

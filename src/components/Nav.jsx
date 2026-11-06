@@ -57,7 +57,7 @@ export default function Nav() {
           <span className="hidden text-[13px] text-muted sm:inline">{profile.role}</span>
         </a>
 
-        <nav aria-label="Sections" className="hidden items-center gap-7 md:flex">
+        <nav aria-label="Sections" className="hidden items-center gap-6 lg:flex">
           {nav.map((item) => (
             <a
               key={item.href}
@@ -79,7 +79,7 @@ export default function Nav() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a href={profile.calendar} className="hidden h-9 px-4 text-[14px] btn-line sm:inline-flex">
+          <a href={profile.calendar} className="hidden h-9 px-4 text-[14px] btn-solid sm:inline-flex">
             Book a call
           </a>
 
@@ -89,7 +89,7 @@ export default function Nav() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? 'Close menu' : 'Open menu'}
-            className="flex size-9 items-center justify-center rounded-soft border border-hair md:hidden"
+            className="flex size-9 items-center justify-center rounded-soft border border-hair lg:hidden"
           >
             <span aria-hidden="true" className="relative block h-3 w-4">
               <span
@@ -110,7 +110,7 @@ export default function Nav() {
       <div
         id="mobile-nav"
         hidden={!open}
-        className="border-t border-hair bg-paper md:hidden"
+        className="border-t border-hair bg-paper lg:hidden"
       >
         <nav aria-label="Sections" className="shell flex flex-col py-2">
           {nav.map((item) => (

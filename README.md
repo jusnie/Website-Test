@@ -20,8 +20,13 @@ npm run build    # dist/
 | `tailwind.config.js` | The dealt palette and type stack as tokens. |
 | `PRODUCT.md` / `DESIGN.md` | Impeccable's context files: product truth and the visual system. |
 
-Sections, in order: hero · what I handle · **a week with me** · how we work · proof · tool stack ·
-**rate** · FAQ · two ways to start · closing footer.
+Sections, in order (each numbered in the eyebrow): hero · **01 services** · **02 case notes** ·
+**03 coverage** · 04 a week · 05 how we work · 06 proof · 07 the stack · 08 rate · 09 questions ·
+10 start here · **dark closing footer**.
+
+The coverage block draws the three time zones as a 24-hour GMT chart, with her working hours in moss
+and the London/New York overlap called out in hours; the case notes run situation → what changed →
+the number a quarter later.
 
 ## Design decisions
 

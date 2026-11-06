@@ -1,6 +1,8 @@
 import Nav from './components/Nav.jsx'
 import Hero from './components/Hero.jsx'
 import Services from './components/Services.jsx'
+import CaseNotes from './components/CaseNotes.jsx'
+import Coverage from './components/Coverage.jsx'
 import Week from './components/Week.jsx'
 import Process from './components/Process.jsx'
 import Proof from './components/Proof.jsx'
@@ -20,6 +22,8 @@ export default function App() {
       <main id="main">
         <Hero />
         <Services />
+        <CaseNotes />
+        <Coverage />
         <Week />
         <Process />
         <Proof />

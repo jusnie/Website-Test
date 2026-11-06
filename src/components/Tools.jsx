@@ -6,7 +6,7 @@ export default function Tools() {
       <div className="shell py-16 md:py-24">
         <div className="grid gap-6 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="eyebrow">The stack</p>
+            <p className="eyebrow">07 &mdash; The stack</p>
             <h2 className="display mt-4 text-[clamp(1.9rem,3.2vw,2.9rem)] leading-[1.08]">
               Tools I already work in.
             </h2>

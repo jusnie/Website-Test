@@ -7,7 +7,7 @@ export default function Week() {
       <div className="shell py-16 md:py-24">
         <div className="grid gap-6 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="eyebrow">01 &mdash; {week.eyebrow}</p>
+            <p className="eyebrow">04 &mdash; {week.eyebrow}</p>
             <h2 className="display mt-4 text-[clamp(1.9rem,3.2vw,2.9rem)] leading-[1.08]">
               {week.title}
             </h2>

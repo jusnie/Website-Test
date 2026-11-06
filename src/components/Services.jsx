@@ -2,42 +2,44 @@ import { services } from '../content.js'
 
 export default function Services() {
   return (
-    <section id="services" className="scroll-mt-20 border-t border-hair bg-paper">
+    <section id="services" className="scroll-mt-20 bg-paper">
       <div className="shell py-16 md:py-24">
         <div className="grid gap-6 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="eyebrow">What I handle</p>
+            <p className="eyebrow">01 &mdash; Services</p>
             <h2 className="display mt-4 text-[clamp(1.9rem,3.2vw,2.9rem)] leading-[1.08]">
               Four jobs, taken off your desk.
             </h2>
           </div>
           <p className="lead max-w-[52ch] lg:col-span-5 lg:col-start-8">
-            Pick one or take all four. Every arrangement starts with the same question: which hour of your
-            week should never be yours again?
+            Pick one or take all four. Every arrangement starts with the same question: which hour of
+            your week should never be yours again?
           </p>
         </div>
 
-        <ul className="mt-14 border-b border-hair">
+        <ul className="mt-14 grid gap-px overflow-hidden rounded-soft border border-hair bg-hair lg:grid-cols-2">
           {services.map((service, index) => (
-            <li key={service.name} className="group border-t border-hair">
-              <div className="grid grid-cols-1 items-baseline gap-x-8 gap-y-3 py-7 transition-transform duration-300 ease-calm group-hover:-translate-y-0.5 md:grid-cols-12 md:py-8">
-                <span className="font-sans text-[13px] tabular-nums text-muted md:col-span-1">
+            <li key={service.name} className="group bg-paper p-6 transition-colors duration-300 sm:p-8">
+              <div className="flex items-baseline justify-between gap-4">
+                <span className="font-sans text-[13px] tabular-nums text-muted">
                   {String(index + 1).padStart(2, '0')}
                 </span>
-
-                <h3 className="display text-[clamp(1.35rem,2.1vw,1.75rem)] leading-tight md:col-span-4">
-                  {service.name}
-                </h3>
-
-                <div className="md:col-span-5">
-                  <p className="text-[16px] leading-[1.55] text-body">{service.line}</p>
-                  <p className="mt-1.5 text-[14px] text-muted">{service.detail}</p>
-                </div>
-
-                <p className="font-sans text-[14px] text-muted md:col-span-2 md:text-right">
-                  {service.from}
-                </p>
+                <span className="font-sans text-[13px] text-muted">{service.from}</span>
               </div>
+
+              <h3 className="display mt-4 text-[clamp(1.35rem,2.1vw,1.75rem)] leading-tight">
+                {service.name}
+              </h3>
+              <p className="mt-3 max-w-[38ch] text-[15px] leading-[1.6] text-body">{service.line}</p>
+
+              <ul className="mt-5 space-y-2 border-t border-hair pt-5">
+                {service.items.map((item) => (
+                  <li key={item} className="flex gap-3 text-[14px] leading-snug text-muted">
+                    <span aria-hidden="true" className="mt-[7px] size-1 shrink-0 rounded-full bg-moss" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </li>
           ))}
         </ul>

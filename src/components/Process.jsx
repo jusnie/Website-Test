@@ -6,7 +6,7 @@ export default function Process() {
       <div className="shell py-16 md:py-24">
         <div className="grid gap-6 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="eyebrow">How we work</p>
+            <p className="eyebrow">05 &mdash; How we work</p>
             <h2 className="display mt-4 text-[clamp(1.9rem,3.2vw,2.9rem)] leading-[1.08]">
               Two weeks to know if it fits.
             </h2>

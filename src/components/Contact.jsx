@@ -9,7 +9,7 @@ export default function Contact() {
       <div className="shell py-16 md:py-24">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-5">
-            <p className="eyebrow">Start here</p>
+            <p className="eyebrow">10 &mdash; Start here</p>
             <h2 className="display mt-4 text-[clamp(1.9rem,3.2vw,2.9rem)] leading-[1.08]">
               {contact.title}
             </h2>

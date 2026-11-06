@@ -57,6 +57,10 @@ export default function Hero() {
               </div>
             ))}
           </dl>
+
+          <p className="mt-6 max-w-[42ch] text-[13px] leading-relaxed text-muted">
+            {hero.credentials}
+          </p>
         </div>
 
         <div className="lg:col-span-6 lg:col-start-7">

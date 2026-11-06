@@ -41,7 +41,10 @@ Both faces are self-hosted via `@fontsource-variable/*`; the Google Fonts links 
 | Table cells | Process, Tools, Contact all use the same 1px-gap hairline grid. |
 | Details/summary | FAQ uses native `<details>`, `+` rotates 45° when open, question turns moss. |
 | Status dot | 7px moss circle, **static** — the pulsing variant was rejected by the Impeccable detector as decorative liveness. |
-| Proof band | Single dark section: `ink` ground, paper text, figures at display size with inverse hairlines. |
+| Proof band | Dark section: `ink` ground, two quotes at display size, figures on inverse hairlines. |
+| Coverage chart | 24-hour GMT ruler; each zone a hairline track with a rounded bar (moss for her hours, `ink/20` for clients), axis ticks in tabular numerals. |
+| Case notes | Three-part definition list under a display-size metric; the metric is the column's anchor. |
+| Footer | Dark, bookending the proof band: closing line, email, solid button on three columns of links, legal line at `paper/60`. |
 
 ## Motion
 

@@ -6,7 +6,7 @@ export default function Faq() {
       <div className="shell py-16 md:py-24">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
           <div className="lg:col-span-4">
-            <p className="eyebrow">Questions</p>
+            <p className="eyebrow">09 &mdash; Questions</p>
             <h2 className="display mt-4 text-[clamp(1.9rem,3.2vw,2.9rem)] leading-[1.08]">
               The four I get asked most.
             </h2>
