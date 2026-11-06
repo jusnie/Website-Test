@@ -6,5 +6,7 @@ node_modules/
 # Re-create with:
 #   git clone --depth 1 https://github.com/pbakaus/impeccable.git impeccable
 #   git clone --depth 1 https://github.com/scanaislop/aislop.git aislop
+#   git clone --depth 1 https://github.com/Leonxlnx/taste-skill.git taste-skill
 impeccable/
 aislop/
+taste-skill/
