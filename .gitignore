@@ -2,7 +2,9 @@ node_modules/
 .DS_Store
 *.log
 
-# Shallow clone of the upstream Impeccable repo (https://github.com/pbakaus/impeccable).
-# Kept on disk so we can use the skills/engine, but out of git: it is ~95 MB of
-# third-party source. Re-create it with `git clone --depth 1 <url> impeccable`.
+# Third-party tool checkouts, kept on disk (so we can use them) but out of git.
+# Re-create with:
+#   git clone --depth 1 https://github.com/pbakaus/impeccable.git impeccable
+#   git clone --depth 1 https://github.com/scanaislop/aislop.git aislop
 impeccable/
+aislop/
