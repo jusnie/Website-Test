@@ -22,7 +22,7 @@ export default function Process() {
             <li key={item.step} className="bg-paper p-7 md:p-8">
               <span className="font-sans text-[13px] tabular-nums text-moss">{item.step}</span>
               <h3 className="display mt-4 text-[22px] leading-tight">{item.title}</h3>
-              <p className="mt-3 text-[15px] leading-[1.6] text-ink/75">{item.body}</p>
+              <p className="mt-3 text-[15px] leading-[1.6] text-body">{item.body}</p>
             </li>
           ))}
         </ol>

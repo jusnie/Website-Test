@@ -21,8 +21,9 @@ export const profile = {
 
 export const nav = [
   { label: 'What I handle', href: '#services' },
-  { label: 'How we work', href: '#process' },
+  { label: 'A week', href: '#week' },
   { label: 'Proof', href: '#proof' },
+  { label: 'Rate', href: '#rate' },
   { label: 'Questions', href: '#faq' },
 ]
 
@@ -83,6 +84,55 @@ export const process = [
   },
 ]
 
+export const week = {
+  eyebrow: 'A week',
+  title: 'What a normal week looks like.',
+  note: 'Not a list of services — the actual shape of the work, Monday to Friday, written the way it happens.',
+  days: [
+    {
+      day: 'Monday',
+      theme: 'Set the week',
+      lines: [
+        'Inbox to zero by 8am, with a one-screen digest waiting for you.',
+        'Calendar rebuilt around the three things that actually matter this week.',
+        'Anything that can be a message instead of a meeting, made a message.',
+      ],
+    },
+    {
+      day: 'Tuesday',
+      theme: 'Meetings',
+      lines: [
+        'Agendas out the night before, with the decision each call needs to reach.',
+        'Notes and action items filed within the hour, owners named.',
+      ],
+    },
+    {
+      day: 'Wednesday',
+      theme: 'The long tail',
+      lines: [
+        'Travel, bookings, visas and the plan B that nobody wants to write.',
+        'Expenses and invoices from the past two weeks, filed and chased.',
+      ],
+    },
+    {
+      day: 'Thursday',
+      theme: 'Follow-through',
+      lines: [
+        'Every thread from Tuesday chased until it closes or escalates.',
+        'Supplier and contractor replies, batched into one short update.',
+      ],
+    },
+    {
+      day: 'Friday',
+      theme: 'Close the desk',
+      lines: [
+        'One document with what moved, what stalled, and what needs you next week.',
+        'Calendar cleaned for Monday. Nothing left open on the desk.',
+      ],
+    },
+  ],
+}
+
 export const proof = {
   quote:
     'Ava took the calendar and the inbox in the first week. By the second, I had stopped opening email before nine in the morning.',
@@ -105,6 +155,27 @@ export const tools = [
   { name: 'QuickBooks', use: 'Invoices and expenses' },
   { name: 'Loom', use: 'Async walkthroughs' },
 ]
+
+export const rate = {
+  eyebrow: 'Rate',
+  title: 'Forty hours a month, most months.',
+  body: 'One rate, no tiers, no add-ons for the things listed above. The minimum exists because anything less does not cover an inbox and a calendar properly.',
+  headline: { value: '$32', unit: 'per hour' },
+  rows: [
+    { label: 'Minimum', value: '20 hours a month' },
+    { label: 'Typical', value: '40 hours a month' },
+    { label: 'Billed', value: 'Monthly, in advance' },
+    { label: 'Trial', value: 'Two paid weeks, stop after day ten' },
+    { label: 'Notice', value: 'Two weeks, no penalty' },
+    { label: 'Not included', value: 'Bookkeeping, design, paid ads' },
+  ],
+  included: [
+    'Inbox and calendar, every working day',
+    'Meeting notes and action items',
+    'Travel, bookings and expense filing',
+    'A Friday close-out document',
+  ],
+}
 
 export const faq = [
   {

@@ -30,7 +30,7 @@ export default function Services() {
                 </h3>
 
                 <div className="md:col-span-5">
-                  <p className="text-[16px] leading-[1.55] text-ink/80">{service.line}</p>
+                  <p className="text-[16px] leading-[1.55] text-body">{service.line}</p>
                   <p className="mt-1.5 text-[14px] text-muted">{service.detail}</p>
                 </div>
 

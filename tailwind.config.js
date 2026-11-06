@@ -8,6 +8,7 @@ export default {
         surface: '#e4e1dd',
         ink: '#333231',
         muted: '#625f5b',
+        body: '#45433f',
         moss: '#5c6b54',
         hair: 'rgba(51, 50, 49, 0.16)',
         'hair-inverse': 'rgba(238, 236, 234, 0.2)',

@@ -130,6 +130,8 @@ export default function HeroScene() {
         color: new THREE.Color(sheet.color),
         roughness: 0.86,
         metalness: 0,
+        transparent: true,
+        opacity: 0,
       })
       const mesh = new THREE.Mesh(geometry, material)
       mesh.position.set(sheet.x, sheet.y, sheet.z)
@@ -137,7 +139,8 @@ export default function HeroScene() {
       mesh.castShadow = true
       mesh.receiveShadow = true
       mesh.userData.phase = index * 1.37
-      mesh.userData.base = { x: sheet.x, y: sheet.y, z: sheet.z, rz: sheet.rz }
+      mesh.userData.base = { x: sheet.x, y: sheet.y, z: sheet.z, rz: sheet.rz, rx: sheet.rx }
+      mesh.userData.enterAt = index * 0.09
       group.add(mesh)
 
       geometries.push(geometry)
@@ -152,6 +155,8 @@ export default function HeroScene() {
     ground.position.y = -2.35
     ground.receiveShadow = true
     scene.add(ground)
+
+    const tiltX = (mesh) => mesh.userData.base.rx
 
     const pointer = { x: 0, y: 0, tx: 0, ty: 0 }
 
@@ -170,22 +175,31 @@ export default function HeroScene() {
     const clock = new THREE.Clock()
     let frame = 0
 
-    const draw = () => {
+    const draw = (withIntro = true) => {
       const t = clock.getElapsedTime()
 
       meshes.forEach((mesh) => {
-        const { phase, base } = mesh.userData
-        mesh.position.y = base.y + Math.sin(t * 0.34 + phase) * 0.055
+        const { phase, base, enterAt } = mesh.userData
+        const progress = withIntro ? Math.min(1, Math.max(0, (t - enterAt) / 0.85)) : 1
+        const ease = 1 - (1 - progress) ** 3
+        const settle = 1 - ease
+
+        mesh.position.y = base.y + Math.sin(t * 0.34 + phase) * 0.055 - settle * 0.32
         mesh.position.x = base.x + Math.cos(t * 0.26 + phase * 1.2) * 0.03
-        mesh.position.z = base.z + Math.sin(t * 0.22 + phase) * 0.04
-        mesh.rotation.z = base.rz + Math.sin(t * 0.28 + phase) * 0.022
+        mesh.position.z = base.z + Math.sin(t * 0.22 + phase) * 0.04 - settle * 1.2
+        mesh.rotation.z = base.rz + Math.sin(t * 0.28 + phase) * 0.022 + settle * 0.24
+        mesh.rotation.x = tiltX(mesh) + settle * 0.3
+        mesh.material.opacity = ease
       })
 
       pointer.x += (pointer.tx - pointer.x) * 0.045
       pointer.y += (pointer.ty - pointer.y) * 0.045
+
+      const scroll = Math.min(1, window.scrollY / 800)
       group.rotation.y = pointer.x * 0.26
-      group.rotation.x = -pointer.y * 0.16
+      group.rotation.x = -pointer.y * 0.16 + scroll * 0.22
       group.rotation.z = Math.sin(t * 0.16) * 0.012
+      group.position.y = Math.sin(t * 0.5) * 0.02 - scroll * 0.15
 
       renderer.render(scene, camera)
     }
@@ -219,12 +233,12 @@ export default function HeroScene() {
 
     const resizeObserver = new ResizeObserver(() => {
       fit()
-      if (reduceMotion) draw()
+      if (reduceMotion) draw(false)
     })
     resizeObserver.observe(node)
 
     fit()
-    draw()
+    draw(!reduceMotion)
     requestAnimationFrame(() => {
       if (mounted) setReady(true)
     })

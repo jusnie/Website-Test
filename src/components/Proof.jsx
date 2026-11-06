@@ -4,7 +4,7 @@ export default function Proof() {
   return (
     <section id="proof" className="scroll-mt-20 bg-ink text-paper">
       <div className="shell py-16 md:py-24">
-        <p className="text-[13px] uppercase tracking-[0.14em] text-paper/50">Proof</p>
+        <p className="text-[13px] uppercase tracking-[0.14em] text-paper/65">Proof</p>
 
         <blockquote className="mt-8 max-w-[26ch] font-display text-[clamp(1.7rem,3.6vw,3.1rem)] leading-[1.16] tracking-[-0.02em] sm:max-w-[34ch]">
           &ldquo;{proof.quote}&rdquo;

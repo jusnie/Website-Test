@@ -20,6 +20,9 @@ npm run build    # dist/
 | `tailwind.config.js` | The dealt palette and type stack as tokens. |
 | `PRODUCT.md` / `DESIGN.md` | Impeccable's context files: product truth and the visual system. |
 
+Sections, in order: hero · what I handle · **a week with me** · how we work · proof · tool stack ·
+**rate** · FAQ · two ways to start · closing footer.
+
 ## Design decisions
 
 Dealt by taste-skill for page kind `service`:
@@ -37,6 +40,17 @@ camera refitted on resize; pointer parallax damped at 0.045; DPR capped at 2; re
 the tab is hidden; geometries, materials and renderer disposed on unmount. The chunk is split out
 (`React.lazy`) so the page paints before three.js arrives, and a CSS composition stands in when
 WebGL is unavailable or `prefers-reduced-motion` is set (single static frame).
+
+## Interaction detail
+
+- Scroll reveal on the week and rate blocks (IntersectionObserver, CSS-driven, disabled under
+  `prefers-reduced-motion`; no JS animation frames).
+- Nav underlines track the section in view, and the menu collapses to a real disclosure button on
+  mobile with Escape handling and `aria-expanded`.
+- The 3D sheets fly in with a 90ms stagger per sheet, fade from the camera and settle into their
+  drift; scroll adds a slow tilt to the whole stack.
+- Body copy uses a solid `#45433f` rather than ink at 75% opacity — measured 7.61:1 on paper,
+  where the opacity mix landed near the 4.5:1 line.
 
 ## Quality gates
 

@@ -26,7 +26,7 @@ export default function Faq() {
                     +
                   </span>
                 </summary>
-                <p className="max-w-[62ch] pb-6 pr-8 text-[15px] leading-[1.65] text-ink/75">
+                <p className="max-w-[62ch] pb-6 pr-8 text-[15px] leading-[1.65] text-body">
                   {item.a}
                 </p>
               </details>
