@@ -1,109 +1,84 @@
-# Website-Test
+# Ava Rivera — executive VA portfolio
 
-Design/build playground for websites, driven by three agent-facing tools:
+A one-page portfolio for a virtual assistant, built with **React 19 + Vite + Tailwind + three.js**,
+designed with **taste-skill** and gated by **Impeccable** (design detector) and **aislop** (code detector).
 
-- **[Impeccable](https://github.com/pbakaus/impeccable)** — design vocabulary, critique/audit skills, and a 62-rule UI anti-pattern detector.
-- **[taste-skill](https://github.com/leonxlnx/taste-skill)** — `design-taste-frontend` 2.5: builds company sites from a dealt palette/type/hero-layout system, with a vetted photograph library, real UI fragments, and a browser checker.
-- **[aislop](https://github.com/scanaislop/aislop)** — code-quality gate that catches the slop coding agents leave in source (narrative comments, swallowed errors, `as any`, dead code), scored 0–100.
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # dist/
+```
 
-All three are deterministic and run without an API key.
-
-## Repo layout
+## What's here
 
 | Path | What it is |
 |---|---|
-| `impeccable/` | Shallow clone of upstream `pbakaus/impeccable` (git-ignored). Sparse-checked to `.claude/ skill/ docs/` — the compiled skill, playbooks and docs; `tests/`, `crates/` and the 20+ provider mirrors are not checked out. |
-| `.claude/skills/impeccable` | Symlink → `impeccable/.claude/skills/impeccable` (created by `impeccable link`). |
-| `taste-skill/` | Shallow clone of upstream `Leonxlnx/taste-skill` (git-ignored, ~69 MB — most of it the bundled, offline photograph library). |
+| `src/content.js` | **Every word, price and link on the page.** All identity copy is placeholder — swap it here and nowhere else. |
+| `src/components/` | One file per section: Nav, Hero, Services, Process, Proof, Tools, Faq, Contact, Footer. |
+| `src/three/HeroScene.jsx` | The WebGL hero: six drifting paper sheets, soft shadows, pointer parallax. Raw three.js, lazy-loaded, static fallback when WebGL is absent. |
+| `src/index.css` | Tailwind layers, display/lead/button primitives, reduced-motion handling. |
+| `tailwind.config.js` | The dealt palette and type stack as tokens. |
+| `PRODUCT.md` / `DESIGN.md` | Impeccable's context files: product truth and the visual system. |
+
+## Design decisions
+
+Dealt by taste-skill for page kind `service`:
+
+- **Palette — three stones:** paper `#eeecea`, surface `#e4e1dd`, ink `#333231`, muted `#625f5b`, moss `#5c6b54`, hairlines at 16% ink.
+- **Type:** Literata (display, 400, `-0.026em`) over Figtree (text), both self-hosted through `@fontsource-variable/*` because the Google Fonts CDN is unreachable here.
+- **Hero:** the dealt split layout — copy in five columns, the visual in six, frame at 628×716.
+- **Rhythm:** paper → paper → surface → **one** dark ink band (proof) → paper → surface → paper closing footer.
+
+## The three.js scene
+
+Six extruded, bevel-edged sheets in paper tones with one moss and one ink card, drifting over a
+shadow plane. Hemisphere fill plus a warm key light casting 1024px soft shadows; 32° perspective
+camera refitted on resize; pointer parallax damped at 0.045; DPR capped at 2; rendering paused when
+the tab is hidden; geometries, materials and renderer disposed on unmount. The chunk is split out
+(`React.lazy`) so the page paints before three.js arrives, and a CSS composition stands in when
+WebGL is unavailable or `prefers-reduced-motion` is set (single static frame).
+
+## Quality gates
+
+```bash
+./.claude/skills/impeccable/scripts/impeccable detect src dist/index.html   # design anti-patterns
+aislop scan                                                                # code slop, 0–100
+```
+
+Current state: **Impeccable — 0 findings**, **aislop — 100/100, 0 warnings**.
+Impeccable's URL scan and element rules (contrast, tiny text) need Chrome, which this sandbox
+cannot install; run them on a normal machine before launch.
+
+## Before this goes live
+
+Everything in `PRODUCT.md` under *Open decisions* — the name, quote, figures, prices, email,
+calendar and LinkedIn links are placeholders from `src/content.js`. Real photography would
+strengthen the proof band.
+
+---
+
+## Tooling in this workspace
+
+The three tools the site was built with are vendored (git-ignored) and linked for agent use:
+
+| Path | What it is |
+|---|---|
+| `impeccable/` | Shallow clone of `pbakaus/impeccable`, sparse-checked to `.claude/ skill/ docs/`. |
+| `.claude/skills/impeccable` | Symlink → the compiled Impeccable skill (plus `.agents/skills/`). |
+| `taste-skill/` | Shallow clone of `Leonxlnx/taste-skill` (~69 MB, mostly the offline photograph library). |
 | `.claude/skills/design-taste-frontend` | Symlink → `taste-skill/skills/taste-skill`. |
-| `.agents/skills/*` | The same two skills, linked for non-Claude harnesses. |
-| `aislop/` | Shallow clone of upstream `scanaislop/aislop` (git-ignored, ~8 MB). Reference only — the CLI is installed globally. |
+| `aislop/` | Shallow clone of `scanaislop/aislop`; the CLI is installed globally (`aislop scan`). |
 
-Pinned versions: Impeccable `4.8.0` (engine `0.1.18`), taste-skill `2.5.0`, aislop `0.20.0`. Working tree ≈ 94 MB, 2.6k files.
+Pinned: Impeccable `4.8.0` (engine `0.1.18`), taste-skill `2.5.0`, aislop `0.20.0`.
 
-## Setup already done here
+Two environment notes: Impeccable's engine was seeded into `~/.impeccable/bin/0.1.18/` from the npm
+package (its self-download is blocked), and Tailwind is **v3** here because v4's native
+`@tailwindcss/oxide` binary is missing from this registry mirror.
 
-```bash
-# Impeccable — vendored clone + linked skill
-git clone --depth 1 https://github.com/pbakaus/impeccable.git impeccable
-cd impeccable && git sparse-checkout init --cone && git sparse-checkout set .claude skill docs && cd ..
-npx -y impeccable@4.8.0 link --source=./impeccable -y
-
-# taste-skill — vendored clone + linked skill
-git clone --depth 1 https://github.com/Leonxlnx/taste-skill.git taste-skill
-ln -s ../../taste-skill/skills/taste-skill .claude/skills/design-taste-frontend
-
-# aislop — vendored clone + global CLI
-git clone --depth 1 https://github.com/scanaislop/aislop.git aislop
-npm install -g aislop
-```
-
-Two things needed a workaround because this sandbox only reaches npm / PyPI / GitHub:
-
-- **Impeccable's engine** normally self-downloads from GitHub releases. It was copied into
-  `~/.impeccable/bin/0.1.18/impeccable` from the npm package `@impeccable/cli-linux-x64`.
-  Without that file, `impeccable context` / `detect` fail with "could not download engine".
-- **Google Fonts** (`fonts.googleapis.com`) is unreachable, so the taste-skill's dealt font
-  pairings can't load from the CDN. Self-host instead — the same families ship on npm as
-  `@fontsource/*` packages (e.g. `npm i @fontsource/host-grotesk`), which this sandbox can reach.
-
-## Using taste-skill (design)
-
-All scripts run on Node 22 and install nothing.
+### taste-skill recipes used
 
 ```bash
-cd taste-skill/skills/taste-skill
-
-node scripts/start.mjs deal --page software          # deal a palette + font pairing
-node scripts/start.mjs css --page software --palette warm-black-gold --type host --radius soft
-node assets/layout/deal.mjs --type product           # deal one of 11 hero layouts
-node scripts/photos.mjs list                         # 413 vetted photographs, by trade
-node scripts/photos.mjs pick --trade cafe --sections hero,bar,roastery --seed s1 --draft-lead
-node scripts/icons.mjs ...                           # real brand/UI SVGs, resolved locally
+node scripts/start.mjs deal --page service
+node scripts/start.mjs css --page service --palette three-stones --type literata --radius soft
+node assets/layout/deal.mjs --type service
 ```
-
-Page kinds: `software`, `gaming`, `tech`, `product`, `service`, `place`.
-
-**Browser checks are unavailable in this sandbox.** `scripts/consistency.mjs`, `shoot.mjs` and
-`perf.mjs` need headless Chrome; no Chrome/Chromium is installed and every browser-download host
-(`storage.googleapis.com`, `cdn.playwright.dev`, Debian mirrors) is blocked. A `@sparticuz/chromium`
-binary was fetched from npm as an experiment — it launches but hangs on import in this container
-(needs `libnspr4`/`libnss3`, which came from the package's `al2023` bundle, yet the sandbox still
-stalls it). So: build and screenshot-check by eye here, run `consistency.mjs` on a normal machine.
-
-## Using Impeccable (design review)
-
-```bash
-./.claude/skills/impeccable/scripts/impeccable context                 # load PRODUCT.md / DESIGN.md
-./.claude/skills/impeccable/scripts/impeccable detect path/to/page.html
-./.claude/skills/impeccable/scripts/impeccable detect --json src/
-```
-
-Exit code is `2` when findings exist, so it drops straight into CI. Agent commands:
-`/impeccable init`, `document`, `critique <target>`, `polish`, `bolder`, `quieter`, `harden`, `live`.
-
-## Using aislop (code quality)
-
-```bash
-aislop scan          # score 0–100 + findings
-aislop scan --json   # machine-readable, for CI
-aislop fix           # deterministic auto-fixes
-aislop fix -p        # agent handoff prompt for the rest
-aislop ci            # quality gate
-aislop rules         # explain every rule
-```
-
-Current state of this repo: `0 files` — nothing in a language aislop analyzes yet.
-
-## Updating the vendored clones
-
-```bash
-cd impeccable && git pull --depth 1 origin main && cd ..
-npx -y impeccable@4.8.0 link --source=./impeccable -y --force
-
-cd taste-skill && git pull --depth 1 origin main && cd ..
-cd aislop && git pull --depth 1 origin main && cd ..
-npm install -g aislop
-```
-
-`git sparse-checkout disable` inside `impeccable/` restores the full upstream tree.
