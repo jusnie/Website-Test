@@ -9,6 +9,9 @@ export default defineConfig({
     strictPort: true,
     allowedHosts: true,
   },
+  optimizeDeps: {
+    entries: ['index.html'],
+  },
   build: {
     target: 'es2020',
   },
